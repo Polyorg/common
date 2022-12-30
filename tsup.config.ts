@@ -1,5 +1,4 @@
 import { defineConfig } from "tsup"
-// import { findUpSync } from 'find-up'
 
 export default defineConfig({
   clean: true,
@@ -7,5 +6,4 @@ export default defineConfig({
   outExtension(ctx) {
     return { js: `.${ctx.format}.js` }
   },
-  // inject: process.env.JSX ? [findUpSync("react-export.js")!] : undefined,
 })

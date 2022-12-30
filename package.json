@@ -1,6 +1,5 @@
 {
   "name": "poly-lib",
-  "version": "1.0.0",
   "description": "Common Poly lib",
   "main": "index.js",
   "scripts": {
