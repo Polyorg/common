@@ -1,5 +1,5 @@
 {
-  "name": "poly-lib",
+  "name": "@polyorg/poly-lib",
   "version": "1.0.0",
   "description": "Common Poly lib",
   "scripts": {
