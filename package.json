@@ -1,6 +1,7 @@
 {
   "name": "@polyorg/poly-lib",
   "version": "1.0.0",
+  "private": true,
   "description": "Common Poly lib",
   "scripts": {
     "build": "turbo run build",
