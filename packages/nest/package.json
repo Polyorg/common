@@ -2,10 +2,42 @@
   "name": "@poly/nest",
   "version": "1.0.0",
   "description": "Poly nest",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
-  "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "author": "Nitin <nitinpanwar0802@gmail.com>",
+  "homepage": "https://github.com/Polyorg/poly-lib.git#readme",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Polyorg/system-design.git",
+    "directory": "packages/common"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.2.1",
+    "@types/express": "^4.17.15",
+    "@types/node": "^18.11.18",
+    "@types/uuid": "^9.0.0",
+    "express": "^4.18.2",
+    "express-http-context": "^1.2.4",
+    "logform": "^2.4.2",
+    "nest-winston": "^1.8.0",
+    "rxjs": "^7.8.0",
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2"
+  }
 }
