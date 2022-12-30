@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Common Poly lib",
   "main": "index.js",
-  "workspaces": [
-    "/packages"
-  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
