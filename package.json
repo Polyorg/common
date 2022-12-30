@@ -8,7 +8,7 @@
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "create:pkg": "plop component",
-    "test": "jest",
+    "test": "echo tests",
     "lint": "eslint packages/**/src --ext .ts,.tsx --config .eslintrc --cache",
     "format:check": "prettier --check packages/**/src --cache",
     "format:write": "prettier --write packages/**/src --cache",
