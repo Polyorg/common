@@ -13,7 +13,8 @@ jobs:
       - checkout
       - node/install-packages:
       - run:
-          command: npm i -g pnpm
+          name: "Install pnpm"
+          command: "npm i -g pnpm"
       - run:
           name: "Build"
           command: "pnpm build"
@@ -23,7 +24,8 @@ jobs:
       - checkout
       - node/install-packages:
       - run:
-          command: npm i -g pnpm
+          name: "Install pnpm"
+          command: "npm i -g pnpm"
       - run:
           name: "Tests"
           command: "pnpm test"
@@ -33,7 +35,8 @@ jobs:
       - checkout
       - node/install-packages:
       - run:
-          command: npm i -g pnpm
+          name: "Install pnpm"
+          command: "npm i -g pnpm"
       - run:
           name: "ESlint"
           command: "pnpm lint"
@@ -43,7 +46,8 @@ jobs:
       - checkout
       - node/install-packages:
       - run:
-          command: npm i -g pnpm
+          name: "Install pnpm"
+          command: "npm i -g pnpm"
       - run:
           name: "TypeCheck"
           command: "pnpm typecheck"
@@ -53,7 +57,8 @@ jobs:
       - checkout
       - node/install-packages:
       - run:
-          command: npm i -g pnpm
+          name: "Install pnpm"
+          command: "npm i -g pnpm"
       - run:
           name: "Prettier"
           command: "pnpm prettier:check"
