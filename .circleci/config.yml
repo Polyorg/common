@@ -64,7 +64,7 @@ jobs:
       - <<: *install-packages
       - run:
           name: "Prettier"
-          command: "pnpm prettier:check"
+          command: "pnpm format:check"
 
 orbs:
   node: circleci/node@5.0.3
