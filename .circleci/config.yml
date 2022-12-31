@@ -1,44 +1,19 @@
 default: &default
   docker:
-    - image: cimg/node:18.3.0
+    - image: cimg/base:stable
   working_directory: ~/project
 
-restore_cache: &restore_cahce
-  restore_cache:
-    name: "Restore pnpm Package Cache"
-    keys:
-      - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-
-pnpm: &pnpm
-  run:
-    name: "Install pnpm package manager"
-    command: |
-      brew install corepack
-      sudo corepack enable && corepack prepare  --activate pnpm@7.11.0
-save_cache: &save_cache
-  save_cache:
-    name: "Save pnpm Package Cache"
-    key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-    paths:
-      - node_modules
-
-install_dep: &install_dep
-  run:
-    name: Install Dependencies
-    command: |
-      pnpm install
-
 version: 2.1
-
+orbs:
+  node: circleci/node@18.3.0
 jobs:
   build:
     <<: *default
     steps:
       - checkout
-      - <<: *restore_cahce
-      - <<: *pnpm
-      - <<: *install_dep
-      - <<: *save_cache
+      - node/install-packages:
+      - run:
+          command: npm i -g pnpm
       - run:
           name: "Build"
           command: "pnpm build"
@@ -46,10 +21,9 @@ jobs:
     <<: *default
     steps:
       - checkout
-      - <<: *restore_cahce
-      - <<: *pnpm
-      - <<: *install_dep
-      - <<: *save_cache
+      - node/install-packages:
+      - run:
+          command: npm i -g pnpm
       - run:
           name: "Tests"
           command: "pnpm test"
@@ -57,10 +31,9 @@ jobs:
     <<: *default
     steps:
       - checkout
-      - <<: *restore_cahce
-      - <<: *pnpm
-      - <<: *install_dep
-      - <<: *save_cache
+      - node/install-packages:
+      - run:
+          command: npm i -g pnpm
       - run:
           name: "ESlint"
           command: "pnpm lint"
@@ -68,10 +41,9 @@ jobs:
     <<: *default
     steps:
       - checkout
-      - <<: *restore_cahce
-      - <<: *pnpm
-      - <<: *install_dep
-      - <<: *save_cache
+      - node/install-packages:
+      - run:
+          command: npm i -g pnpm
       - run:
           name: "TypeCheck"
           command: "pnpm typecheck"
@@ -79,10 +51,9 @@ jobs:
     <<: *default
     steps:
       - checkout
-      - <<: *restore_cahce
-      - <<: *pnpm
-      - <<: *install_dep
-      - <<: *save_cache
+      - node/install-packages:
+      - run:
+          command: npm i -g pnpm
       - run:
           name: "Prettier"
           command: "pnpm prettier:check"
