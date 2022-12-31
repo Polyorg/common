@@ -80,7 +80,7 @@ jobs:
             > ~/project/.npmrc
       - run:
           name: "Release"
-          command: "npx changeset release && npx changeset publish"
+          command: "npx changeset publish"
 
 orbs:
   node: circleci/node@5.0.3
@@ -99,7 +99,7 @@ workflows:
             - eslint
             - typecheck
             - prettier
-          filters:
-            branches:
-              only:
-                - main
+          # filters:
+          #   branches:
+          #     only:
+          #       - main
