@@ -75,11 +75,11 @@ jobs:
       - run:
           name: Authenticate with registry
           command:
-            echo "//npm.pkg.github.com/:_authToken=GITHUB_TOKEN" >
+            echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >
             ~/project/.npmrc
       - run:
           name: "Release"
-          command: "pnpm release"
+          command: "npx changeset release && npx changeset publish"
 
 orbs:
   node: circleci/node@5.0.3
