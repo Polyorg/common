@@ -1,61 +1,59 @@
 default: &default
   docker:
-    - image: cimg/base:stable
+    - image: cimg/node:18.3.0
   working_directory: ~/project
 
 version: 2.1
-orbs:
-  node: circleci/node@18.3.0
+
 jobs:
   build:
     <<: *default
     steps:
       - checkout
-      - node/install-packages:
       - run:
           name: "Install pnpm"
           command: "npm i -g pnpm"
       - run:
           name: "Build"
           command: "pnpm build"
+
   tests:
     <<: *default
     steps:
       - checkout
-      - node/install-packages:
       - run:
           name: "Install pnpm"
           command: "npm i -g pnpm"
       - run:
           name: "Tests"
           command: "pnpm test"
+
   eslint:
     <<: *default
     steps:
       - checkout
-      - node/install-packages:
       - run:
           name: "Install pnpm"
           command: "npm i -g pnpm"
       - run:
           name: "ESlint"
           command: "pnpm lint"
+
   typecheck:
     <<: *default
     steps:
       - checkout
-      - node/install-packages:
       - run:
           name: "Install pnpm"
           command: "npm i -g pnpm"
       - run:
           name: "TypeCheck"
           command: "pnpm typecheck"
+
   prettier:
     <<: *default
     steps:
       - checkout
-      - node/install-packages:
       - run:
           name: "Install pnpm"
           command: "npm i -g pnpm"
@@ -63,6 +61,8 @@ jobs:
           name: "Prettier"
           command: "pnpm prettier:check"
 
+orbs:
+  node: circleci/node@5.0.3
 workflows:
   ci:
     jobs:
