@@ -75,8 +75,9 @@ jobs:
       - run:
           name: Authenticate with registry
           command:
-            echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >
-            ~/project/.npmrc
+            echo
+            "@polyorg:registry=https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}"
+            > ~/project/.npmrc
       - run:
           name: "Release"
           command: "npx changeset release && npx changeset publish"
