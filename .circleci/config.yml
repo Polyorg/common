@@ -13,6 +13,7 @@ pnpm: &pnpm
   run:
     name: "Install pnpm package manager"
     command: |
+      brew install corepack
       sudo corepack enable && corepack prepare  --activate pnpm@7.11.0
 save_cache: &save_cache
   save_cache:
