@@ -3,10 +3,12 @@ default: &default
     - image: cimg/node:18.3.0
   working_directory: ~/project
 
-install-packages: &install-packages
+install-pnpm: &install-pnpm
   - run:
       name: "Install pnpm"
       command: "npm i -g pnpm"
+
+install-packages: &install-packages
   - node/install-packages:
       cache-path: ~/project/node_modules
       override-ci-command: npm install
@@ -18,6 +20,7 @@ jobs:
     <<: *default
     steps:
       - checkout
+      - <<: *install-pnpm
       - <<: *install-packages
       - run:
           name: "Build"
@@ -27,6 +30,7 @@ jobs:
     <<: *default
     steps:
       - checkout
+      - <<: *install-pnpm
       - <<: *install-packages
       - run:
           name: "Tests"
@@ -36,6 +40,7 @@ jobs:
     <<: *default
     steps:
       - checkout
+      - <<: *install-pnpm
       - <<: *install-packages
       - run:
           name: "ESlint"
@@ -45,6 +50,7 @@ jobs:
     <<: *default
     steps:
       - checkout
+      - <<: *install-pnpm
       - <<: *install-packages
       - run:
           name: "TypeCheck"
@@ -54,6 +60,7 @@ jobs:
     <<: *default
     steps:
       - checkout
+      - <<: *install-pnpm
       - <<: *install-packages
       - run:
           name: "Prettier"
