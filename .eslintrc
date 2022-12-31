@@ -44,7 +44,8 @@
     "@typescript-eslint/no-shadow": "off",
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "react/jsx-filename-extension": "off"
   },
   "overrides": [
     {

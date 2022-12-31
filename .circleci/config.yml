@@ -1,26 +1,105 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
+default: &default
+  docker:
+    - image: cimg/node:18.3.0
+  working_directory: ~/project
+
+install-pnpm: &install-pnpm
+  - run:
+      name: "Install pnpm"
+      command: "npm i -g pnpm"
+
+install-packages: &install-packages
+  - node/install-packages:
+      cache-path: ~/project/node_modules
+      override-ci-command: pnpm install
+
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  build:
+    <<: *default
     steps:
       - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Build"
+          command: "pnpm build"
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  tests:
+    <<: *default
+    steps:
+      - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
+      - run:
+          name: "Tests"
+          command: "pnpm test"
+
+  eslint:
+    <<: *default
+    steps:
+      - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
+      - run:
+          name: "ESlint"
+          command: "pnpm lint"
+
+  typecheck:
+    <<: *default
+    steps:
+      - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
+      - run:
+          name: "TypeCheck"
+          command: "pnpm typecheck"
+
+  prettier:
+    <<: *default
+    steps:
+      - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
+      - run:
+          name: "Prettier"
+          command: "pnpm format:check"
+
+  release:
+    <<: *default
+    steps:
+      - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
+      - run:
+          name: Authenticate with registry
+          command:
+            echo
+            "@polyorg:registry=https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}"
+            > ~/project/.npmrc
+      - run:
+          name: "Release"
+          command: "npx changeset release && npx changeset publish"
+
+orbs:
+  node: circleci/node@5.0.3
 workflows:
-  say-hello-workflow:
+  ci:
     jobs:
-      - say-hello
+      - build
+      - tests
+      - eslint
+      - typecheck
+      - prettier
+      - release:
+          requires:
+            - build
+            - tests
+            - eslint
+            - typecheck
+            - prettier
+          filters:
+            branches:
+              only:
+                - main

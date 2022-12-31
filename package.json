@@ -6,17 +6,18 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,js,md}\"",
     "create:pkg": "plop component",
     "test": "echo tests",
-    "lint": "eslint packages/**/src --ext .ts,.tsx --config .eslintrc --cache",
+    "lint": "eslint packages/**/src --ext .ts,.js --config .eslintrc --cache",
     "format:check": "prettier --check packages/**/src --cache",
     "format:write": "prettier --write packages/**/src --cache",
     "release": "changeset release",
     "publish": "changeset publish",
     "release:dev": "changeset release --snapshot dev",
     "publish:dev": "changeset publish --tag dev",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typecheck": "turbo typecheck"
   },
   "repository": {
     "type": "git",
