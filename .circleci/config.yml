@@ -11,7 +11,7 @@ install-pnpm: &install-pnpm
 install-packages: &install-packages
   - node/install-packages:
       cache-path: ~/project/node_modules
-      override-ci-command: npm install
+      override-ci-command: pnpm install
 
 version: 2.1
 
