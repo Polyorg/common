@@ -1,6 +1,6 @@
 default: &default
   docker:
-    - image: circleci/node:18.3.0
+    - image: cimg/node:18.3.0
   working_directory: ~/project
 
 restore_cache: &restore_cahce
