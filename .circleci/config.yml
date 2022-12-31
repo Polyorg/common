@@ -66,6 +66,21 @@ jobs:
           name: "Prettier"
           command: "pnpm format:check"
 
+  release:
+    <<: *default
+    steps:
+      - checkout
+      - <<: *install-pnpm
+      - <<: *install-packages
+      - run:
+          name: Authenticate with registry
+          command:
+            echo "//npm.pkg.github.com/:_authToken=GITHUB_TOKEN" >
+            ~/project/.npmrc
+      - run:
+          name: "Release"
+          command: "pnpm release"
+
 orbs:
   node: circleci/node@5.0.3
 workflows:
@@ -76,3 +91,14 @@ workflows:
       - eslint
       - typecheck
       - prettier
+      - release:
+          requires:
+            - build
+            - tests
+            - eslint
+            - typecheck
+            - prettier
+          filters:
+            branches:
+              only:
+                - main
