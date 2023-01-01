@@ -81,6 +81,9 @@ jobs:
             echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >
             ~/project/.npmrc
       - run:
+          name: "Build package"
+          command: "pnpm build"
+      - run:
           name: "Release"
           command: "npx changeset publish"
 
@@ -101,7 +104,7 @@ workflows:
             - eslint
             - typecheck
             - prettier
-          filters:
-            branches:
-              only:
-                - main
+          # filters:
+          #   branches:
+          #     only:
+          #       - main
