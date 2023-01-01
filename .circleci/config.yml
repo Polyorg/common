@@ -73,9 +73,12 @@ jobs:
       - <<: *install-pnpm
       - <<: *install-packages
       - run:
+          name: Set registry URL
+          command: npm set registry https://npm.pkg.github.com
+      - run:
           name: Authenticate with registry
           command:
-            echo "//registry.npmjs.org/:_authToken=${GITHUB_TOKEN}" >
+            echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >
             ~/project/.npmrc
       - run:
           name: "Release"
