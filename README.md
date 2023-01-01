@@ -1,6 +1,6 @@
 ## Poly Lib
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Polyorg/poly-lib/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Polyorg/poly-lib/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Polyorg/poly-lib/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Polyorg/poly-lib/tree/master)
 
 Common poly packages for poly services
 
