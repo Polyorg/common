@@ -80,12 +80,12 @@ jobs:
           command:
             echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >
             ~/project/.npmrc
-      - run:
-          name: "Build package"
-          command: "pnpm build"
+      # - run:
+      #     name: "Build package"
+      #     command: "pnpm build"
       - run:
           name: "Release"
-          command: "npx changeset version && npx changeset publish"
+          command: "pnpm release"
 
 orbs:
   node: circleci/node@5.0.3
