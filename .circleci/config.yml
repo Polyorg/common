@@ -85,7 +85,7 @@ jobs:
           command: "pnpm build"
       - run:
           name: "Release"
-          command: "npx changeset publish"
+          command: "npx changeset version && npx changeset publish"
 
 orbs:
   node: circleci/node@5.0.3
