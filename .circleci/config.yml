@@ -73,14 +73,19 @@ jobs:
       - <<: *install-pnpm
       - <<: *install-packages
       - run:
+          name: Set registry URL
+          command: npm set registry https://npm.pkg.github.com
+      - run:
           name: Authenticate with registry
           command:
-            echo
-            "@polyorg:registry=https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}"
-            > ~/project/.npmrc
+            echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >
+            ~/project/.npmrc
+      - run:
+          name: "Build package"
+          command: "pnpm build"
       - run:
           name: "Release"
-          command: "npx changeset release && npx changeset publish"
+          command: "pnpm release"
 
 orbs:
   node: circleci/node@5.0.3
