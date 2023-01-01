@@ -1,5 +1,11 @@
 # @polyorg/nest
 
+## 1.1.0
+
+### Minor Changes
+
+- Added PolyLogger
+
 ## 1.0.1
 
 ### Patch Changes
