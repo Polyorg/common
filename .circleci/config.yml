@@ -79,6 +79,7 @@ jobs:
           name: Authenticate with registry
           command:
             echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >
+            ~/project/.npmrc echo "enable-pre-post-scripts=true" ?
             ~/project/.npmrc
       - run:
           name: "Build package"
