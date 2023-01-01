@@ -78,7 +78,7 @@ jobs:
       - run:
           name: Authenticate with registry
           command:
-            echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >
+            echo "//npm.pkg.github.com/:_authToken=$GITHUB_AUTH_TOKEN" >
             ~/project/.npmrc echo "enable-pre-post-scripts=true" ?
             ~/project/.npmrc
       - run:
