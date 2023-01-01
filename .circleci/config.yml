@@ -101,7 +101,7 @@ workflows:
             - eslint
             - typecheck
             - prettier
-          # filters:
-          #   branches:
-          #     only:
-          #       - main
+          filters:
+            branches:
+              only:
+                - main
