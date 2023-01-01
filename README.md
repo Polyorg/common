@@ -1,23 +1,18 @@
-## Poly styles
+## Poly Lib
 
-A React-based UI toolkit for product tools at Poly
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Polyorg/poly-lib/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Polyorg/poly-lib/tree/main)
+
+Common poly packages for poly services
 
 ### Requirements
 
-To use Poly Styles, your project _must_ use a recent version of React with
-support for Hooks (`react@16.8.x`).
+Make sure you are authenticated and have GITHUB_TOKEN require for polyorg repos
 
 ### Usage
 
 Install
 
 ```
-yarn add @poly/styles
+pnpm add @polyorg/`packageName`
 
-```
-
-To use only specific package, Install
-
-```
-yarn add @poly/`packageName`
 ```
