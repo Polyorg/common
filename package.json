@@ -12,12 +12,11 @@
     "lint": "eslint packages/**/src --ext .ts,.js --config .eslintrc --cache",
     "format:check": "prettier --check packages/**/src --cache",
     "format:write": "prettier --write packages/**/src --cache",
-    "release": "changeset release",
-    "publish": "changeset publish",
-    "release:dev": "changeset release --snapshot dev",
-    "publish:dev": "changeset publish --tag dev",
+    "release": "changeset publish",
+    "release:dev": "changeset publish --tag dev",
     "prepare": "husky install",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "prerelease": "pnpm build"
   },
   "repository": {
     "type": "git",
@@ -44,6 +43,7 @@
     "husky": "^8.0.0"
   },
   "dependencies": {
+    "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.0",
     "@swc-node/jest": "^1.5.5",
     "@swc/core": "^1.3.24",
